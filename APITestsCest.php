@@ -246,7 +246,7 @@ class APITests
     public function testInvalidAuthorizationToken(ApiTester $I)
     {
         $I->haveHttpHeader('Content-Type', 'application/json');
-        $I->haveHttpHeader('Authorization', 'Basic ' . base64_encode('invalid:token'));
+        $I->haveHttpHeader('basicAuth', 'bad-auth-key');
         $I->sendPOST('/users', $this->getTestUserData());
 
         $I->seeResponseCodeIs(ResponseCodes::$UNAUTHORIZED);
